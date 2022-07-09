@@ -3,6 +3,7 @@ require("plugins")
 require("options")
 require("mappings")
 
+require("impatient")
 local treesitter = require("nvim-treesitter.configs")
 treesitter.setup({
 	ensure_installed = { "lua", "go", "typescript" },
@@ -12,7 +13,6 @@ treesitter.setup({
 })
 
 require("luasnip.loaders.from_vscode").lazy_load()
-vim.cmd [[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]]
 
 local cmp = require("cmp")
 cmp.setup({
@@ -65,4 +65,21 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 vim.cmd [[colorscheme tokyonight]]
 
-require("nvim-tree").setup()
+local autopairs = require("nvim-autopairs")
+autopairs.setup {}
+
+local alpha = require "alpha"
+alpha.setup(require 'alpha.themes.startify'.config)
+
+local gitsigns = require('gitsigns')
+gitsigns.setup()
+
+local lualine = require "lualine"
+lualine.setup {
+	options = {
+		theme = "tokyonight"
+	}
+}
+
+local tree = require("nvim-tree")
+tree.setup()
