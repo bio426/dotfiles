@@ -2,6 +2,9 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+-- custom
+local volume_control = require("volume-control")
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -48,7 +51,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -61,19 +64,19 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-	awful.layout.suit.floating,
+	--awful.layout.suit.floating,
 	awful.layout.suit.tile,
 	awful.layout.suit.tile.left,
-	awful.layout.suit.tile.bottom,
-	awful.layout.suit.tile.top,
-	awful.layout.suit.fair,
-	awful.layout.suit.fair.horizontal,
-	awful.layout.suit.spiral,
-	awful.layout.suit.spiral.dwindle,
-	awful.layout.suit.max,
-	awful.layout.suit.max.fullscreen,
-	awful.layout.suit.magnifier,
-	awful.layout.suit.corner.nw,
+	--awful.layout.suit.tile.bottom,
+	--awful.layout.suit.tile.top,
+	--awful.layout.suit.fair,
+	--awful.layout.suit.fair.horizontal,
+	--awful.layout.suit.spiral,
+	--awful.layout.suit.spiral.dwindle,
+	--awful.layout.suit.max,
+	--awful.layout.suit.max.fullscreen,
+	--awful.layout.suit.magnifier,
+	--awful.layout.suit.corner.nw,
 	-- awful.layout.suit.corner.ne,
 	-- awful.layout.suit.corner.sw,
 	-- awful.layout.suit.corner.se,
@@ -152,12 +155,12 @@ local tasklist_buttons = gears.table.join(
 local function set_wallpaper(s)
 	-- Wallpaper
 	if beautiful.wallpaper then
-		local wallpaper = beautiful.wallpaper
+		local wallpaper = "/home/bildla/Pictures/wall1.jpg"
 		-- If wallpaper is a function, call it with the screen
 		if type(wallpaper) == "function" then
 			wallpaper = wallpaper(s)
 		end
-		gears.wallpaper.maximized(wallpaper, s, true)
+		gears.wallpaper.maximized(wallpaper, s, false)
 	end
 end
 
@@ -209,6 +212,10 @@ awful.screen.connect_for_each_screen(function(s)
 		},
 		s.mytasklist, -- Middle widget
 		{ -- Right widgets
+			require("battery-widget") {
+				widget_text = " ${AC_BAT}${color_on}${percent}%${color_off} ",
+			},
+			volume_control({}).widget,
 			layout = wibox.layout.fixed.horizontal,
 			mykeyboardlayout,
 			wibox.widget.systray(),
@@ -474,7 +481,8 @@ awful.rules.rules = {
 			"Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
 			"Wpa_gui",
 			"veromix",
-			"xtightvncviewer" },
+			"xtightvncviewer"
+		},
 
 		-- Note that the name property shown in xprop might be set slightly after creation of the client
 		-- and the name shown there might not match defined rules here.
@@ -490,7 +498,7 @@ awful.rules.rules = {
 
 	-- Add titlebars to normal clients and dialogs
 	{ rule_any = { type = { "normal", "dialog" }
-	}, properties = { titlebars_enabled = true }
+	}, properties = { titlebars_enabled = false }
 	},
 
 	-- Set Firefox to always map on the tag named "2" on screen 1.
@@ -505,6 +513,7 @@ client.connect_signal("manage", function(c)
 	-- Set the windows at the slave,
 	-- i.e. put it at the end of others instead of setting it master.
 	-- if not awesome.startup then awful.client.setslave(c) end
+	awful.util.spawn("compton -f")
 
 	if awesome.startup
 			and not c.size_hints.user_position
