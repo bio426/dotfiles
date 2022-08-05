@@ -1,18 +1,13 @@
--- Bildla config
 require("plugins")
 require("options")
 require("mappings")
 
 require("impatient")
-local treesitter = require("nvim-treesitter.configs")
-treesitter.setup({
-	ensure_installed = { "lua", "go", "typescript" },
-	highlight = {
-		enable = true
-	}
-})
 
 require("luasnip.loaders.from_vscode").lazy_load()
+
+local li = require "nvim-lsp-installer"
+li.setup {}
 
 local cmp = require("cmp")
 cmp.setup({
@@ -29,9 +24,6 @@ cmp.setup({
 		{ name = 'nvim_lsp_signature_help' }
 	}
 })
-
-local lspinstaller = require("nvim-lsp-installer")
-lspinstaller.setup({})
 
 local nvim_lsp = require("lspconfig")
 
@@ -53,33 +45,20 @@ nvim_lsp.sumneko_lua.setup {
 				globals = { "vim" }
 			}
 		}
-	}
+	},
+	root_dir = nvim_lsp.util.root_pattern("init.lua")
 }
 
 nvim_lsp.volar.setup {
 	on_attach = on_attach,
 }
 
+nvim_lsp.tailwindcss.setup {
+	on_attach = on_attach,
+	root_dir = nvim_lsp.util.root_pattern("tailwind.config.js"),
+}
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 vim.cmd [[colorscheme tokyonight]]
-
-local autopairs = require("nvim-autopairs")
-autopairs.setup {}
-
-local alpha = require "alpha"
-alpha.setup(require 'alpha.themes.startify'.config)
-
-local gitsigns = require('gitsigns')
-gitsigns.setup()
-
-local lualine = require "lualine"
-lualine.setup {
-	options = {
-		theme = "tokyonight"
-	}
-}
-
-local tree = require("nvim-tree")
-tree.setup()

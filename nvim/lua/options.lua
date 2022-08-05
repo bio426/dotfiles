@@ -9,3 +9,4 @@ vim.opt.foldenable = false
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_transparent = true
+vim.g.tokyonight_transparent_sidebar = true
