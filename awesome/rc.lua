@@ -571,3 +571,12 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- On client floating enable titlebar
+--client.connect_signal("property::floating", function(c)
+--  if c.floating and not c.requests_no_titlebar then
+--    awful.titlebar.show(c)
+--  else
+--    awful.titlebar.hide(c)
+--  end
+--end)
