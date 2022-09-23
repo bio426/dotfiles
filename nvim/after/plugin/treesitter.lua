@@ -4,5 +4,5 @@ p.setup({
 	ensure_installed = { "lua", "go", "typescript" },
 	highlight = {
 		enable = true
-	}
+	},
 })
