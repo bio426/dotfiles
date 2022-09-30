@@ -176,13 +176,6 @@ lspconf.gopls.setup({
 	root_dir = lspconf.util.root_pattern("go.mod"),
 })
 
-lspconf.denols.setup({
-	on_attach = function(client, bufnr)
-		lspconf.util.default_config.on_attach(client, bufnr)
-	end,
-	root_dir = lspconf.util.root_pattern("go.mod"),
-})
-
 lspconf.pyright.setup({
 	on_attach = function(client, bufnr)
 		lspconf.util.default_config.on_attach(client, bufnr)
