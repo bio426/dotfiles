@@ -191,8 +191,8 @@ end
 -- text widget
 function vwidget:create_widget(args)
 	self.widget_text = args.widget_text or {
-		on  = '% 3d%% ',
-		off = '% 3dM ',
+		on  = '| 墳% 3d%% |', -- modify default format here
+		off = '% 3dMasdfg ',
 	}
 	self.widget = wibox.widget.textbox()
 	if self.font then
