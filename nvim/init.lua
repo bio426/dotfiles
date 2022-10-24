@@ -169,6 +169,19 @@ lspconf.tsserver.setup({
 	root_dir = lspconf.util.root_pattern("tsconfig.json")
 })
 
+lspconf.denols.setup({
+	on_attach = function(client, bufnr)
+		lspconf.util.default_config.on_attach(client, bufnr)
+	end,
+	root_dir = lspconf.util.root_pattern("deno.json")
+})
+
+lspconf.marksman.setup({
+	on_attach = function(client, bufnr)
+		lspconf.util.default_config.on_attach(client, bufnr)
+	end,
+})
+
 lspconf.gopls.setup({
 	on_attach = function(client, bufnr)
 		lspconf.util.default_config.on_attach(client, bufnr)

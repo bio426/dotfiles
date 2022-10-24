@@ -12,6 +12,6 @@ p.setup({
 	},
 	filters = {
 		custom = { ".git" },
-		exclude = { ".gitignore" }
+		exclude = { ".gitignore", ".env" }
 	}
 })

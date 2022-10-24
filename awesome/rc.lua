@@ -206,7 +206,7 @@ awful.screen.connect_for_each_screen(function(s)
 		layout = wibox.layout.align.horizontal,
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
-			mylauncher,
+			--mylauncher,
 			s.mytaglist,
 			s.mypromptbox,
 		},
@@ -513,7 +513,7 @@ client.connect_signal("manage", function(c)
 	-- Set the windows at the slave,
 	-- i.e. put it at the end of others instead of setting it master.
 	-- if not awesome.startup then awful.client.setslave(c) end
-	awful.util.spawn("picom -f")
+	awful.util.spawn("picom")
 
 	if awesome.startup
 			and not c.size_hints.user_position
