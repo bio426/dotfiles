@@ -1,10 +1,18 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.wrap = false
-vim.opt.foldlevel = 99
-vim.opt.foldmethod = "indent"
-vim.opt.foldenable = false
---vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- for themes
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.cmd("colorscheme tokyonight")
+-- vim.cmd("colorscheme everforest")
+
+-- for nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

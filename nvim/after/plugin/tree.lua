@@ -1,17 +1,20 @@
 local p = require("nvim-tree")
 
 p.setup({
-	hijack_cursor = true,
+	sort_by = "case_sensitive",
 	view = {
+		adaptive_size = true,
+		mappings = {
+			list = {
+				{ key = "u", action = "dir_up" },
+			},
+		},
 		side = "right"
 	},
 	renderer = {
-		indent_markers = {
-			enable = true
-		}
+		group_empty = true,
 	},
 	filters = {
-		custom = { ".git" },
-		exclude = { ".gitignore", ".env" }
-	}
+		dotfiles = true,
+	},
 })
