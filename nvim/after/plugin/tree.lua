@@ -13,8 +13,11 @@ p.setup({
 	},
 	renderer = {
 		group_empty = true,
+		indent_markers = {
+			enable = true
+		}
 	},
 	filters = {
-		dotfiles = true,
+		dotfiles = false,
 	},
 })

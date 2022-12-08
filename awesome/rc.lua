@@ -216,7 +216,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			require("battery-widget") {
-				widget_text = "|  ${AC_BAT}${color_on}${percent}%${color_off} |",
+				widget_text = "  ${AC_BAT}${color_on}${percent}%${color_off} ",
 			},
 			volume_control({}).widget,
 			mykeyboardlayout,
@@ -518,8 +518,8 @@ client.connect_signal("manage", function(c)
 	awful.util.spawn("picom")
 
 	if awesome.startup
-			and not c.size_hints.user_position
-			and not c.size_hints.program_position then
+		and not c.size_hints.user_position
+		and not c.size_hints.program_position then
 		-- Prevent clients from being unreachable after screen count changes.
 		awful.placement.no_offscreen(c)
 	end

@@ -139,9 +139,9 @@ function battery_widget:init(args)
 	}
 
 	self.widget_text = args.widget_text or (
-			"${AC_BAT}${color_on}${percent}%${color_off}")
+		"${AC_BAT}${color_on}${percent}%${color_off}")
 	self.tooltip_text = args.tooltip_text or (
-			"Battery ${state}${time_est}\nCapacity: ${capacity_percent}%")
+		"Battery ${state}${time_est}\nCapacity: ${capacity_percent}%")
 
 	self.alert_threshold = args.alert_threshold or 5
 	self.alert_timeout = args.alert_timeout or 0
@@ -182,8 +182,8 @@ function battery_widget:get_state()
 	local ac    = pow .. self.ac
 	local bat   = pow .. self.adapter
 	local sysfs = (file_exists(bat .. "/" .. sysfs_names.charging.rate)
-			and sysfs_names.charging
-			or sysfs_names.discharging)
+		and sysfs_names.charging
+		or sysfs_names.discharging)
 
 	-- If there is no battery on this machine.
 	if not sysfs.state then return nil end
@@ -220,9 +220,9 @@ function battery_widget:update()
 
 	-- AC/battery prefix
 	ctx.AC_BAT = (ctx.ac_state == 1
-			and lookup_by_limits(self.ac_prefix, ctx.percent)
-			or lookup_by_limits(self.battery_prefix, ctx.percent)
-			or "Err!")
+		and lookup_by_limits(self.ac_prefix, ctx.percent)
+		or lookup_by_limits(self.battery_prefix, ctx.percent)
+		or "Err!")
 
 	-- Colors
 	ctx.color_on, ctx.color_off = color_tags(
@@ -269,7 +269,7 @@ function battery_widget:update()
 	-- low battery notification
 	if naughty then
 		if (ctx.state == "discharging" and
-				ctx.percent and ctx.percent <= self.alert_threshold) then
+			ctx.percent and ctx.percent <= self.alert_threshold) then
 			self:notify(substitute(self.alert_title, ctx),
 				substitute(self.alert_text, ctx))
 		elseif ctx.state == "full" and self.warn_full_battery then

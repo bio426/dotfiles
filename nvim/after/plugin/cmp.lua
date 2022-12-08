@@ -1,6 +1,10 @@
+require("luasnip.loaders.from_vscode").lazy_load()
 local p = require("cmp")
 local luasnip = require("luasnip")
-require("luasnip.loaders.from_vscode").lazy_load()
+
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+local selectOpts = { behavior = p.SelectBehavior.Select }
 
 p.setup({
 	snippet = {
@@ -32,8 +36,6 @@ p.setup({
 		end,
 	},
 	mapping = {
-		['<Up>'] = p.mapping.select_prev_item(selectOpts),
-		['<Down>'] = p.mapping.select_next_item(selectOpts),
 		['<C-u>'] = p.mapping.scroll_docs(-4),
 		['<C-f>'] = p.mapping.scroll_docs(4),
 		['<C-e>'] = p.mapping.abort(),
