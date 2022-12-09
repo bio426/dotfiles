@@ -33,13 +33,21 @@ lspconfig.volar.setup({
 	root_dir = lspconfig.util.root_pattern("vite.config.ts")
 })
 
+lspconfig.tsserver.setup({
+	root_dir = lspconfig.util.root_pattern("tsconfig.json")
+})
+
+lspconfig.zls.setup({
+	root_dir = lspconfig.util.root_pattern("tsconfig.json")
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	desc = 'LSP actions',
 	callback = function()
 		-- lsp mappings
 		local opts = { buffer = true }
 		-- Muestra información sobre símbolo debajo del cursor
-		mapKeys("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+		mapKeys("n", "<S-k>", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 
 		-- Saltar a definición
 		mapKeys("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
