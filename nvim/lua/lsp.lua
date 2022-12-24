@@ -41,6 +41,10 @@ lspconfig.zls.setup({
 	root_dir = lspconfig.util.root_pattern("tsconfig.json")
 })
 
+lspconfig.tailwindcss.setup({
+	root_dir = lspconfig.util.root_pattern("tsconfig.json")
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	desc = 'LSP actions',
 	callback = function()
