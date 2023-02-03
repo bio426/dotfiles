@@ -34,7 +34,8 @@ lspconfig.volar.setup({
 })
 
 lspconfig.tsserver.setup({
-	root_dir = lspconfig.util.root_pattern("tsconfig.json")
+	root_dir = lspconfig.util.root_pattern("tsconfig.json"),
+	single_file_support = false
 })
 
 lspconfig.zls.setup({

@@ -11,6 +11,7 @@ return require("packer").startup(function(use)
 	-- themes
 	use("folke/tokyonight.nvim")
 	use("sainnhe/everforest")
+	use("bluz71/vim-moonfly-colors")
 
 	-- lsp
 	use("williamboman/mason.nvim")
@@ -24,6 +25,7 @@ return require("packer").startup(function(use)
 	use("L3MON4D3/LuaSnip")
 	use("rafamadriz/friendly-snippets")
 	use("saadparwaiz1/cmp_luasnip")
+
 	use("nvim-tree/nvim-tree.lua")
 	use("nvim-lualine/lualine.nvim")
 	use("windwp/nvim-autopairs")
@@ -31,5 +33,6 @@ return require("packer").startup(function(use)
 	use("nvim-telescope/telescope.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
 	use("numToStr/Comment.nvim")
+	use("mhartington/formatter.nvim")
 end
 )

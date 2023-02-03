@@ -5,8 +5,7 @@ vim.g.mapleader = " "
 
 mapKeys("n", "<Leader>e", ":NvimTreeToggle<CR>")
 mapKeys("n", "<Leader>f", "<ESC><cmd>lua vim.lsp.buf.format({async = true})<CR>")
-mapKeys("n", "<Leader>k", ":BufferLineCycleNext<CR>")
-mapKeys("n", "<Leader>j", ":BufferLineCyclePrev<CR>")
+-- mapKeys("n", "<Leader>f", "<ESC><cmd>:Format<CR>")
 
 mapKeys("n", "<C-e>", "3<C-e>") -- scroll down more quickly
 mapKeys("n", "<C-y>", "3<C-y>") -- scroll up more quickly

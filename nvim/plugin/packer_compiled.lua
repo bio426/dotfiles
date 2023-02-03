@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/bildla/.local/share/nvim/site/pack/packer/start/everforest",
     url = "https://github.com/sainnhe/everforest"
   },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "/home/bildla/.local/share/nvim/site/pack/packer/start/formatter.nvim",
+    url = "https://github.com/mhartington/formatter.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/bildla/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -188,6 +193,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bildla/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["vim-moonfly-colors"] = {
+    loaded = true,
+    path = "/home/bildla/.local/share/nvim/site/pack/packer/start/vim-moonfly-colors",
+    url = "https://github.com/bluz71/vim-moonfly-colors"
   }
 }
 
