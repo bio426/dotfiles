@@ -4,6 +4,7 @@ pcall(require, "luarocks.loader")
 
 -- custom
 local volume_control = require("volume-control")
+local brightness_widget = require("brightness-widget")
 
 -- Standard awesome library
 local gears = require("gears")
@@ -219,6 +220,7 @@ awful.screen.connect_for_each_screen(function(s)
 				widget_text = "  ${AC_BAT}${color_on}${percent}%${color_off} ",
 			},
 			volume_control({}).widget,
+			brightness_widget({}).widget,
 			mykeyboardlayout,
 			wibox.widget.systray(),
 			mytextclock,

@@ -4,10 +4,10 @@ local cmp_lsp = require("cmp_nvim_lsp")
 local mapKeys = require("utils").mapKeys
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
-	"force",
-	lsp_defaults.capabilities,
-	cmp_lsp.default_capabilities()
-)
+		"force",
+		lsp_defaults.capabilities,
+		cmp_lsp.default_capabilities()
+	)
 
 lspconfig.sumneko_lua.setup({
 	settings = {
@@ -20,28 +20,21 @@ lspconfig.sumneko_lua.setup({
 	},
 	root_dir = lspconfig.util.root_pattern("init.lua")
 })
-
 lspconfig.denols.setup({
 	root_dir = lspconfig.util.root_pattern("deno.json")
 })
-
 lspconfig.gopls.setup({
 	root_dir = lspconfig.util.root_pattern("go.mod"),
 })
-
 lspconfig.volar.setup({
-	root_dir = lspconfig.util.root_pattern("vite.config.ts")
+	root_dir = lspconfig.util.root_pattern("package.json"),
+	single_file_support = true,
+	filetypes = { "typescript", "vue" },
 })
-
-lspconfig.tsserver.setup({
-	root_dir = lspconfig.util.root_pattern("tsconfig.json"),
-	single_file_support = false
-})
-
-lspconfig.zls.setup({
-	root_dir = lspconfig.util.root_pattern("tsconfig.json")
-})
-
+--lspconfig.tsserver.setup({
+--	root_dir = lspconfig.util.root_pattern("tsconfig.json"),
+--	single_file_support = false
+--})
 lspconfig.tailwindcss.setup({
 	root_dir = lspconfig.util.root_pattern("tsconfig.json")
 })
