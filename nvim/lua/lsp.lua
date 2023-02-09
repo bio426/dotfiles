@@ -20,23 +20,11 @@ lspconfig.sumneko_lua.setup({
 	},
 	root_dir = lspconfig.util.root_pattern("init.lua")
 })
-lspconfig.denols.setup({
-	root_dir = lspconfig.util.root_pattern("deno.json")
-})
 lspconfig.gopls.setup({
 	root_dir = lspconfig.util.root_pattern("go.mod"),
 })
-lspconfig.volar.setup({
-	root_dir = lspconfig.util.root_pattern("package.json"),
-	single_file_support = true,
-	filetypes = { "typescript", "vue" },
-})
---lspconfig.tsserver.setup({
---	root_dir = lspconfig.util.root_pattern("tsconfig.json"),
---	single_file_support = false
---})
-lspconfig.tailwindcss.setup({
-	root_dir = lspconfig.util.root_pattern("tsconfig.json")
+lspconfig.pyright.setup({
+	root_dir = lspconfig.util.root_pattern("go.mod"),
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {

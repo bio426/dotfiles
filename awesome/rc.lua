@@ -158,7 +158,7 @@ local tasklist_buttons = gears.table.join(
 local function set_wallpaper(s)
 	-- Wallpaper
 	if beautiful.wallpaper then
-		local wallpaper = "/home/bildla/Pictures/wallpaper1.jpg"
+		local wallpaper = "~/Pictures/wallpaper.jpg"
 		-- If wallpaper is a function, call it with the screen
 		if type(wallpaper) == "function" then
 			wallpaper = wallpaper(s)
@@ -175,7 +175,7 @@ awful.screen.connect_for_each_screen(function(s)
 	set_wallpaper(s)
 
 	-- Each screen has its own tag table.
-	awful.tag({ "爵", "", "", "" }, s, awful.layout.layouts[1])
+	awful.tag({ "1", "2", "3", "4" }, s, awful.layout.layouts[1])
 
 	-- Create a promptbox for each screen
 	s.mypromptbox = awful.widget.prompt()
@@ -217,7 +217,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			require("battery-widget") {
-				widget_text = "  ${AC_BAT}${color_on}${percent}%${color_off} ",
+				widget_text = " 󱊣 ${AC_BAT}${color_on}${percent}%${color_off} ",
 			},
 			volume_control({}).widget,
 			brightness_widget({}).widget,

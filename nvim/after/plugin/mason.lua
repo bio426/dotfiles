@@ -3,5 +3,5 @@ local mlspcfg = require("mason-lspconfig")
 
 p.setup()
 mlspcfg.setup({
-	ensure_installed = { "sumneko_lua", "denols", "gopls", "volar", "tailwindcss" }
+	ensure_installed = { "sumneko_lua", "gopls", "pyright" }
 })
