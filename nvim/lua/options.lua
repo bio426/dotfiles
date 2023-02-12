@@ -8,9 +8,8 @@ vim.opt.wrap = false
 -- for themes
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
--- require("tokyonight").setup({ transparent = false })
-vim.cmd("colorscheme tokyonight-night")
--- vim.cmd("colorscheme everforest")
+-- vim.cmd("colorscheme tokyonight-night")
+vim.cmd("colorscheme everforest")
 -- vim.cmd("colorscheme moonfly")
 
 -- for nvim-tree
