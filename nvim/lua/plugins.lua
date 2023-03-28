@@ -9,8 +9,6 @@ return require("packer").startup(function(use)
 	use("nvim-treesitter/nvim-treesitter")
 
 	-- themes
-	use("folke/tokyonight.nvim")
-	use("sainnhe/everforest")
 	use("bluz71/vim-moonfly-colors")
 
 	-- lsp

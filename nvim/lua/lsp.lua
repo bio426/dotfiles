@@ -9,7 +9,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 		cmp_lsp.default_capabilities()
 	)
 
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {
 			runtime = { version = "LuaJIT" },
@@ -23,8 +23,8 @@ lspconfig.sumneko_lua.setup({
 lspconfig.gopls.setup({
 	root_dir = lspconfig.util.root_pattern("go.mod"),
 })
-lspconfig.pyright.setup({
-	root_dir = lspconfig.util.root_pattern("go.mod"),
+lspconfig.tsserver.setup({
+	root_dir = lspconfig.util.root_pattern("tsconfig.json"),
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
