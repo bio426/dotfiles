@@ -8,6 +8,7 @@ vim.opt.wrap = false
 -- for themes
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
+
 vim.cmd("colorscheme moonfly")
 
 -- for nvim-tree

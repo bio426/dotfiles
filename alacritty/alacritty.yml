@@ -230,16 +230,16 @@ everforest_dark_medium: &ever-forest
       cyan:    '#83c092'
       white:   '#d3c6aa'
     bright:
-      black:   '#4b565c'
-      red:     '#e67e80'
-      green:   '#a7c080'
-      yellow:  '#dbbc7f'
-      blue:    '#7fbbb3'
-      magenta: '#d699b6'
-      cyan:    '#83c092'
-      white:   '#d3c6aa'
+      black:   '#526B78'
+      red:     '#EB898B'
+      green:   '#B2CD87'
+      yellow:  '#E2C489'
+      blue:    '#87C9C0'
+      magenta: '#DEA0BE'
+      cyan:    '#88CC99'
+      white:   '#DCCDAF'
 
-colors: *tokyo-night
+colors: *ever-forest
   # Default colors
   #primary:
   #  background: '#1d1f21'
