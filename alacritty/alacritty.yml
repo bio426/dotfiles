@@ -188,58 +188,35 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
-tokyo-night: &tokyo-night
+custom: &custom
   # Default colors
   primary:
-    background: '0x1a1b26'
-    foreground: '0xa9b1d6'
+    background: '#000000'
+    foreground: '#FFFFFF'
 
-  # Normal colors
+  # Normal Colours
   normal:
-    black:   '0x32344a'
-    red:     '0xf7768e'
-    green:   '0x9ece6a'
-    yellow:  '0xe0af68'
-    blue:    '0x7aa2f7'
-    magenta: '0xad8ee6'
-    cyan:    '0x449dab'
-    white:   '0x787c99'
+    black:   '#1a1a1a'
+    red:     '#f4005f'
+    green:   '#98e024'
+    yellow:  '#fa8419'
+    blue:    '#9d65ff'
+    magenta: '#f4005f'
+    cyan:    '#58d1eb'
+    white:   '#c4c5b5'
 
-  # Bright colors
+  # Bright Colours
   bright:
-    black:   '0x444b6a'
-    red:     '0xff7a93'
-    green:   '0xb9f27c'
-    yellow:  '0xff9e64'
-    blue:    '0x7da6ff'
-    magenta: '0xbb9af7'
-    cyan:    '0x0db9d7'
-    white:   '0xacb0d0'
+    black:   '#625e4c'
+    red:     '#f4005f'
+    green:   '#98e024'
+    yellow:  '#e0d561'
+    blue:    '#9d65ff'
+    magenta: '#f4005f'
+    cyan:    '#58d1eb'
+    white:   '#f6f6ef'
 
-everforest_dark_medium: &ever-forest
-    primary:
-      background: '#2f383e'
-      foreground: '#d3c6aa'
-    normal:
-      black:   '#4b565c'
-      red:     '#e67e80'
-      green:   '#a7c080'
-      yellow:  '#dbbc7f'
-      blue:    '#7fbbb3'
-      magenta: '#d699b6'
-      cyan:    '#83c092'
-      white:   '#d3c6aa'
-    bright:
-      black:   '#526B78'
-      red:     '#EB898B'
-      green:   '#B2CD87'
-      yellow:  '#E2C489'
-      blue:    '#87C9C0'
-      magenta: '#DEA0BE'
-      cyan:    '#88CC99'
-      white:   '#DCCDAF'
-
-colors: *ever-forest
+colors: *custom
   # Default colors
   #primary:
   #  background: '#1d1f21'
