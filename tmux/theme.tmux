@@ -8,11 +8,11 @@
 #DARK3="#15161e"
 
 # everforest
-LIGHT1="#a7c080"
-LIGHT2="#d3c6aa"
-DARK1="#48584e"
-DARK2="#3a464e"
-DARK3="#293136"
+LIGHT1="#ffffff"
+LIGHT2="#c4c5b5"
+DARK1="#000000"
+DARK2="#1a1a1a"
+DARK3="#625e4c"
 
 setw -g clock-mode-colour "${LIGHT1}"
 set -g mode-style "fg=${LIGHT1},bg=${DARK1}"
