@@ -26,6 +26,12 @@ lspconfig.gopls.setup({
 lspconfig.tsserver.setup({
 	root_dir = lspconfig.util.root_pattern("tsconfig.json"),
 })
+lspconfig.volar.setup({
+	root_dir = lspconfig.util.root_pattern("vite.config.ts"),
+})
+lspconfig.tailwindcss.setup({
+	root_dir = lspconfig.util.root_pattern("tailwind.config.cjs"),
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	desc = 'LSP actions',

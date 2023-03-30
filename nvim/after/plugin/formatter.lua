@@ -19,6 +19,9 @@ p.setup({
 		typescript = {
 			require("formatter.filetypes.typescript").prettier,
 		},
+		vue = {
+			require("formatter.filetypes.vue").prettier,
+		},
 		["*"] = {
 			require("formatter.filetypes.any").remove_trailing_whitespace,
 		},
