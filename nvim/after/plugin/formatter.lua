@@ -22,6 +22,9 @@ p.setup({
 		vue = {
 			require("formatter.filetypes.vue").prettier,
 		},
+		zig = {
+			require("formatter.filetypes.zig").zigfmt,
+		},
 		["*"] = {
 			require("formatter.filetypes.any").remove_trailing_whitespace,
 		},
