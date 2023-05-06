@@ -35,6 +35,9 @@ lspconfig.tailwindcss.setup({
 lspconfig.clangd.setup({
 	-- root_dir = lspconfig.util.root_pattern("go.mod"),
 })
+lspconfig.zls.setup({
+	-- root_dir = lspconfig.util.root_pattern("go.mod"),
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	desc = 'LSP actions',
