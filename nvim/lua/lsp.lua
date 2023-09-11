@@ -20,23 +20,15 @@ lspconfig.lua_ls.setup({
 	},
 	root_dir = lspconfig.util.root_pattern("init.lua")
 })
-lspconfig.gopls.setup({
-	root_dir = lspconfig.util.root_pattern("go.mod"),
-})
-lspconfig.tsserver.setup({
-	root_dir = lspconfig.util.root_pattern("tsconfig.json"),
-})
 lspconfig.volar.setup({
 	root_dir = lspconfig.util.root_pattern("vite.config.ts"),
+	filetypes = {"vue","typescript","javascript"},
 })
 lspconfig.tailwindcss.setup({
 	root_dir = lspconfig.util.root_pattern("tailwind.config.cjs"),
 })
-lspconfig.clangd.setup({
-	-- root_dir = lspconfig.util.root_pattern("go.mod"),
-})
-lspconfig.zls.setup({
-	-- root_dir = lspconfig.util.root_pattern("go.mod"),
+lspconfig.gopls.setup({
+	root_dir = lspconfig.util.root_pattern("go.mod"),
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
