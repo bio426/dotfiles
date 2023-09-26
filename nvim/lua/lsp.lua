@@ -30,6 +30,9 @@ lspconfig.tailwindcss.setup({
 lspconfig.gopls.setup({
 	root_dir = lspconfig.util.root_pattern("go.mod"),
 })
+lspconfig.zls.setup({
+	root_dir = lspconfig.util.root_pattern("build.zig"),
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	desc = 'LSP actions',
