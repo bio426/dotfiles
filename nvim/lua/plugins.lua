@@ -32,5 +32,6 @@ return require("packer").startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim")
 	use("numToStr/Comment.nvim")
 	use("mhartington/formatter.nvim")
+	use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 end
 )

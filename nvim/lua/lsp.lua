@@ -3,11 +3,7 @@ local lsp_defaults = lspconfig.util.default_config
 local cmp_lsp = require("cmp_nvim_lsp")
 local mapKeys = require("utils").mapKeys
 
-lsp_defaults.capabilities = vim.tbl_deep_extend(
-		"force",
-		lsp_defaults.capabilities,
-		cmp_lsp.default_capabilities()
-	)
+lsp_defaults.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, cmp_lsp.default_capabilities())
 
 lspconfig.lua_ls.setup({
 	settings = {
@@ -15,17 +11,17 @@ lspconfig.lua_ls.setup({
 			runtime = { version = "LuaJIT" },
 			diagnostics = { globals = { "vim" } },
 			workspace = { library = vim.api.nvim_get_runtime_file("", true) },
-			telemetry = { enable = false }
-		}
+			telemetry = { enable = false },
+		},
 	},
-	root_dir = lspconfig.util.root_pattern("init.lua")
+	root_dir = lspconfig.util.root_pattern("init.lua"),
 })
 lspconfig.volar.setup({
 	root_dir = lspconfig.util.root_pattern("vite.config.ts"),
-	filetypes = {"vue","typescript","javascript"},
+	filetypes = { "vue", "typescript", "javascript" },
 })
 lspconfig.tailwindcss.setup({
-	root_dir = lspconfig.util.root_pattern("tailwind.config.cjs"),
+	root_dir = lspconfig.util.root_pattern("tailwind.config.cjs", "tailwind.config.js"),
 })
 lspconfig.gopls.setup({
 	root_dir = lspconfig.util.root_pattern("go.mod"),
@@ -34,8 +30,8 @@ lspconfig.zls.setup({
 	root_dir = lspconfig.util.root_pattern("build.zig"),
 })
 
-vim.api.nvim_create_autocmd('LspAttach', {
-	desc = 'LSP actions',
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP actions",
 	callback = function()
 		-- lsp mappings
 		local opts = { buffer = true }
@@ -69,5 +65,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 		-- Mostrar diagnósticos de la línea actual
 		mapKeys("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
-	end
+	end,
 })
