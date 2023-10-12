@@ -55,11 +55,11 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/custom/theme.lua")
-naughty.notify({
-	timeout = 0,
-	title = "debug",
-	text = "value" .. beautiful.notification_bg,
-})
+-- naughty.notify({
+-- 	timeout = 0,
+-- 	title = "debug",
+-- 	text = "value" .. beautiful.notification_bg,
+-- })
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
