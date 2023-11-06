@@ -1,6 +1,6 @@
-local p = require("indent_blankline")
+local p = require("ibl")
 
 p.setup({
-	show_current_context = true,
-	show_current_context_start = true
+	-- show_current_context = true,
+	-- show_current_context_start = true
 })

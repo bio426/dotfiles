@@ -1,37 +1,49 @@
-vim.cmd("packadd packer.nvim")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
+local plugins = {
+	"wbthomason/packer.nvim",
 
 	--required
-	use("nvim-lua/plenary.nvim")
-	use("kyazdani42/nvim-web-devicons")
-	use("nvim-treesitter/nvim-treesitter")
+	"nvim-lua/plenary.nvim",
+	"kyazdani42/nvim-web-devicons",
+	"nvim-treesitter/nvim-treesitter",
 
 	-- themes
-	use("bluz71/vim-moonfly-colors")
+	"bluz71/vim-moonfly-colors",
 
 	-- lsp
-	use("williamboman/mason.nvim")
-	use("williamboman/mason-lspconfig.nvim")
-	use("neovim/nvim-lspconfig")
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
+	"neovim/nvim-lspconfig",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"hrsh7th/nvim-cmp",
+	"L3MON4D3/LuaSnip",
+	"rafamadriz/friendly-snippets",
+	"saadparwaiz1/cmp_luasnip",
+	"nvim-tree/nvim-tree.lua",
+	"nvim-lualine/lualine.nvim",
+	"windwp/nvim-autopairs",
+	"lewis6991/gitsigns.nvim",
+	"nvim-telescope/telescope.nvim",
+	"lukas-reineke/indent-blankline.nvim",
+	"numToStr/Comment.nvim",
+	"stevearc/conform.nvim",
+	{'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'},
+}
 
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/nvim-cmp")
-	use("L3MON4D3/LuaSnip")
-	use("rafamadriz/friendly-snippets")
-	use("saadparwaiz1/cmp_luasnip")
+local opts = {}
 
-	use("nvim-tree/nvim-tree.lua")
-	use("nvim-lualine/lualine.nvim")
-	use("windwp/nvim-autopairs")
-	use("lewis6991/gitsigns.nvim")
-	use("nvim-telescope/telescope.nvim")
-	use("lukas-reineke/indent-blankline.nvim")
-	use("numToStr/Comment.nvim")
-	use("mhartington/formatter.nvim")
-	use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-end
-)
+require("lazy").setup(plugins,opts)
