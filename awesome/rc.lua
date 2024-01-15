@@ -52,6 +52,12 @@ do
 end
 -- }}}
 
+-- Custom after startup commands
+awful.spawn.once("picom")
+awful.spawn.once(
+	"xrandr --output HDMI-A-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-A-1 --off --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal"
+)
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/custom/theme.lua")
@@ -534,7 +540,6 @@ client.connect_signal("manage", function(c)
 	-- Set the windows at the slave,
 	-- i.e. put it at the end of others instead of setting it master.
 	-- if not awesome.startup then awful.client.setslave(c) end
-	awful.util.spawn("picom")
 
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
 		-- Prevent clients from being unreachable after screen count changes.
