@@ -1,77 +1,116 @@
 --- @type LazySpec
 return {
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
-		},
-		config = function()
-			local cmp = require("cmp")
-			local luasnip = require("luasnip")
+    'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
+    dependencies = {
+        -- Snippet Engine & its associated nvim-cmp source
+        {
+            'L3MON4D3/LuaSnip',
+            build = (function()
+                -- Build Step is needed for regex support in snippets.
+                -- This step is not supported in many windows environments.
+                -- Remove the below condition to re-enable on windows.
+                if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+                    return
+                end
+                return 'make install_jsregexp'
+            end)(),
+            dependencies = {
+                -- `friendly-snippets` contains a variety of premade snippets.
+                --    See the README about individual language/framework/plugin snippets:
+                --    https://github.com/rafamadriz/friendly-snippets
+                {
+                    'rafamadriz/friendly-snippets',
+                    config = function()
+                        require('luasnip.loaders.from_vscode').lazy_load()
+                    end,
+                },
+            },
+        },
+        'saadparwaiz1/cmp_luasnip',
 
-			require("luasnip/loaders/from_vscode").lazy_load()
+        -- Adds other completion capabilities.
+        --  nvim-cmp does not ship with all sources by default. They are split
+        --  into multiple repos for maintenance purposes.
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-path',
+    },
+    config = function()
+        -- See `:help cmp`
+        local cmp = require 'cmp'
+        local luasnip = require 'luasnip'
+        luasnip.config.setup {}
 
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						luasnip.lsp_expand(args.body)
-					end,
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-k>"] = cmp.mapping.select_prev_item(),
-					["<C-j>"] = cmp.mapping.select_next_item(),
-					["<C-d>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<CR>"] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = false,
-					}),
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-				}),
-				formatting = {
-					fields = { "menu", "abbr", "kind" },
-					format = function(entry, item)
-						local menu_icon = {
-							nvim_lsp = "λ",
-							luasnip = "⋗",
-							buffer = "Ω",
-							path = "🖫",
-						}
-						item.menu = menu_icon[entry.source.name]
-						return item
-					end,
-					expandable_indicator = true,
-				},
-				sources = {
-					{ name = "nvim_lsp", keyword_length = 1 },
-					{ name = "buffer", keyword_length = 2 },
-					{ name = "path", keyword_length = 3 },
-					{ name = "luasnip", keyword_length = 3 },
-				},
-			})
-		end,
-	},
+        cmp.setup {
+            snippet = {
+                expand = function(args)
+                    luasnip.lsp_expand(args.body)
+                end,
+            },
+            completion = { completeopt = 'menu,menuone,noinsert' },
+
+            -- For an understanding of why these mappings were
+            -- chosen, you will need to read `:help ins-completion`
+            --
+            -- No, but seriously. Please read `:help ins-completion`, it is really good!
+            mapping = cmp.mapping.preset.insert {
+                -- Select the [n]ext item
+                ['<C-j>'] = cmp.mapping.select_next_item(),
+                -- Select the [p]revious item
+                ['<C-k>'] = cmp.mapping.select_prev_item(),
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    elseif luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    elseif luasnip.jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                -- Scroll the documentation window [b]ack / [f]orward
+                ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-f>'] = cmp.mapping.scroll_docs(4),
+
+
+                -- Accept ([y]es) the completion.
+                --  This will auto-import if your LSP supports it.
+                --  This will expand snippets if the LSP sent a snippet.
+                ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
+
+
+                -- Think of <c-l> as moving to the right of your snippet expansion.
+                --  So if you have a snippet that's like:
+                --  function $name($args)
+                --    $body
+                --  end
+                --
+                -- <c-l> will move you to the right of each of the expansion locations.
+                -- <c-h> is similar, except moving you backwards.
+                ['<C-l>'] = cmp.mapping(function()
+                    if luasnip.expand_or_locally_jumpable() then
+                        luasnip.expand_or_jump()
+                    end
+                end, { 'i', 's' }),
+                ['<C-h>'] = cmp.mapping(function()
+                    if luasnip.locally_jumpable(-1) then
+                        luasnip.jump(-1)
+                    end
+                end, { 'i', 's' }),
+            },
+            sources = {
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
+                { name = 'path' },
+            },
+        }
+    end,
 }

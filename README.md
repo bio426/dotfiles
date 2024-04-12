@@ -7,3 +7,4 @@
 - alacritty
 - arandr
 - ripgrep
+- xclip
