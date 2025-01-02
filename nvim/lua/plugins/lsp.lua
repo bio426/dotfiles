@@ -6,7 +6,6 @@ return {
             { "williamboman/mason.nvim", opts = {} },
             "williamboman/mason-lspconfig.nvim",
             { 'folke/neodev.nvim',       opts = {} },
-            -- "pmizio/typescript-tools.nvim",
         },
         config = function()
             -- Set up Mason before anything else
@@ -136,7 +135,16 @@ return {
                         },
                     },
                 },
-                volar = {},
+                volar = {
+                    -- add filetypes for typescript, javascript and vue
+                    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+                    init_options = {
+                        vue = {
+                            -- disable hybrid mode
+                            hybridMode = false,
+                        },
+                    },
+                },
                 tsserver = {
                     init_options = {
                         plugins = {
